@@ -1,0 +1,47 @@
+version: '3.5'
+services:
+  web:
+    build: ./src
+    ports:
+      - "6000:6000"
+    networks:
+      - network1
+    environment:
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: MeteoV6
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./database/tables-db.sql:/docker-entrypoint-initdb.d/tables-db.sql
+    networks:
+      - network1
+      - network2
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: MeteoV6
+    ports:
+      - "8000:3306"
+    command: ["--explicit_defaults_for_timestamp=1"]
+  mysql-workbench:
+    depends_on:
+      - db
+    image: lscr.io/linuxserver/mysql-workbench:latest
+    container_name: mysql-workbench
+    environment:
+      - TZ=Europe/Bucharest
+    ports:
+      - 3000:3000
+    cap_add:
+      - IPC_LOCK
+    networks:
+      - network2
+networks:
+  network1:
+    name: network1
+  network2:
+    name: network2
+

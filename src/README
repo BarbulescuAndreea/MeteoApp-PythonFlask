@@ -1,0 +1,9 @@
+Barbulescu Khristine-Andreea
+342C3
+
+Rulare: din root-ul proiectului : docker-compose up
+API: ruleaza pe portul 6000
+Baza de date: MySQL, credentiale: user: root, password: password, port pentru BD: 8000
+Nume baza de date: MeteoV6
+Aplicatia de gestiune a bazei de date: MySQL Workbench, accesare prin localhost:3000
+In postman: imi functioneaza toate testele

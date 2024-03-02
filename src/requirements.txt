@@ -1,0 +1,5 @@
+Flask
+sqlalchemy
+pymysql
+mysqlclient
+mysql-connector-python==8.0.27
